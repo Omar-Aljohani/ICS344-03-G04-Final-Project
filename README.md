@@ -19,7 +19,7 @@ we first start the metasploitable using the following command <code>msfconsole</
 
 From the picture, we can determine that our attack was successful; we got access there, for there is a pair of passwords and usernames that is correct in our list. And the pair is also shown in the picture <code>vagrant:vagrant</code>
 
-in Summary:
+In summary:
 - Tool: Metasploit using <code>ssh_login</code>
 - Configuration: two lists of words for username and password
 - Attack was successful using the tool
@@ -31,10 +31,20 @@ For the second task, I will use Python with the paramiko package to install it. 
 We will use paramiko to create a session and make an SSH login attempt. to code is simple to prove a concept. It one a file of usernames and reads it line by line, then  takes each line and tries each password possible in a second file.
 For the code to work, you must set up the correct configuration at the top of the script.
 ```python
-  target_ip = '10.0.2.15'  # ReplaceS with your Metasploitable IP
+  target_ip = '10.0.2.15'  # Replace with your Metasploitable IP
   username_file_path = 'users.txt'
   password_file_path = 'passwords.txt'
 ```
+I have provided dummy data in the folder /phase1 for users.txt and passwords.txt
+
+![image](https://github.com/user-attachments/assets/b986cfed-cd54-4ee7-9b04-a786dabf61df)
+
+The output will show each attempt with the user and the password used for that attempt, followed by an indication if the attempt failed or was successful.
+At the end, the script will print a message telling the user if it successfully found an account to login; if it did, it will print a dictionary containing the account
+that succeeded in the login attempt.
+
+![image](https://github.com/user-attachments/assets/0ce73da6-b630-4908-9b11-387c3b4cb4d6)
+
 
 
 
