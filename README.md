@@ -62,9 +62,13 @@ In this phase, we set up a SIEM environment using Splunk to collect and visualiz
    - Installed Splunk on the Kali Linux machine to act as the SIEM server.
    - Installed Splunk Universal Forwarder on the Metasploitable3 machine to forward logs.
 
-3. **Log Forwarding**
-   - Configured the Splunk Universal Forwarder to send `/var/log/auth.log` from Metasploitable3 to the Splunk server on Kali.
-   - Verified that logs were received successfully in Splunk's **Search & Reporting → Data Summary**.
+3. **Log Forwarding and Attack Execution**
+   - Conducted an SSH brute-force attack on the Metasploitable3 victim machine using Metasploit Framework from the Kali Linux attacker machine.
+   - The attack attempts and login activities were logged on the Metasploitable3 machine in the `/var/log/auth.log` file.
+   - Installed and configured Splunk Universal Forwarder on the Metasploitable3 machine to forward the `auth.log` file.
+   - Configured Splunk Enterprise on the Kali Linux machine to receive and monitor these forwarded logs.
+   - Successfully verified that SSH attack logs from the Metasploitable3 machine were visible in Splunk under **Search & Reporting → Data Summary**.
+
 
 4. **Filtering SSH Attack Logs**
    - Used the following search query to filter SSH login attempts:
