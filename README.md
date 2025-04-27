@@ -45,7 +45,55 @@ that succeeded in the login attempt.
 
 ![image](https://github.com/user-attachments/assets/0ce73da6-b630-4908-9b11-387c3b4cb4d6)
 
+# Phase 2 - Visual Analysis with a SIEM Dashboard
 
+## Overview
+In this phase, we set up a SIEM environment using Splunk to collect and visualize attack logs from the Metasploitable3 victim machine. We specifically focused on detecting and analyzing SSH brute-force attacks.
+
+---
+
+## Steps Completed
+
+1. **Environment Setup**
+   - Followed the official guidelines to set up the Metasploitable3 VM in VirtualBox.
+   - Installed Kali Linux VM and downloaded the Metasploit Framework to perform attacks against the victim machine.
+
+2. **Splunk Installation**
+   - Installed Splunk on the Kali Linux machine to act as the SIEM server.
+   - Installed Splunk Universal Forwarder on the Metasploitable3 machine to forward logs.
+
+3. **Log Forwarding**
+   - Configured the Splunk Universal Forwarder to send `/var/log/auth.log` from Metasploitable3 to the Splunk server on Kali.
+   - Verified that logs were received successfully in Splunk's **Search & Reporting → Data Summary**.
+
+4. **Filtering SSH Attack Logs**
+   - Used the following search query to filter SSH login attempts:
+     ```spl
+     index=* sourcetype=syslog host="metasploitable3-ub1404" (sshd AND ("Failed password" OR "Accepted password"))
+     ```
+   - This query allowed isolating SSH login events for further analysis.
+   - ![logs from both environments](https://github.com/user-attachments/assets/c1a81480-4f86-4f59-b71c-df79f0f46691)
+
+
+5. **Attack Visualization and Analysis**
+   - Used the following search query to classify attacks and extract attacker IP addresses:
+     ```spl
+     index=* sourcetype=syslog host="metasploitable3-ub1404" (sshd AND ("Failed password" OR "Accepted password"))
+     | eval attack_type=if(like(_raw, "%Failed password%"), "SSH Failed Login", "SSH Successful Login")
+     | rex "from\s(?<src_ip>\d+\.\d+\.\d+\.\d+)"
+     | eval attack_category="SSH Attack"
+     | stats count by src_ip, attack_category, attack_type
+     | sort - count
+     ```
+   - Visualization was created as a **bar chart** showing:
+     - Attacker IP addresses
+     - Attack types (SSH Failed Login or SSH Successful Login)
+     - Number of attempts
+   - This provided clear visibility into attack patterns and sources.
+   - ![attack visualization and analysis](https://github.com/user-attachments/assets/e789cf76-5ffa-49aa-8801-9875b044d20d)
+
+
+---
 
 
 
