@@ -121,19 +121,19 @@ In this phase, we set up and install Fail2Ban and conifure it into Metasploitabl
    - We had to configure Fail2Ban on the Metasploitable3 machine by executing this Command:
    `sudo nano /etc/fail2ban/jail.conf`
    Then, modify the `[sshd]` section, where we modified:` Longpath, Bantime, maxretry, filter and port`.
-   - At the end we had to restart and verify Fail2Ban
+   - At the end we had to restart and verify Fail2Ban.
 
 3. **Harden SSH Configurations**
    - In this step we had a problem where the firewall was not allowing 22/tcp port so we had to edit SSH config by executing this command:
    `sudo nano /etc/ssh/sshd_config`
    then applying some changes on port, permitrootlogin and passwordauthentication.
    - We had to restart SSH services.
-   - At the emd we updated the firewall to double down and make sure that 22/tcp port is allowed and 2222/tcp port is blocked by executing these commands:
+   - At the end we updated the firewall to double down and make sure that 22/tcp port is allowed and 2222/tcp port is blocked by executing these commands:
    `sudo ufw allow 22/tcp`
    `sudo ufw deny 2222/tcp`.
 
 
 4. **Testing the Defense**
-   - We ran a test on phase 1 python script and here are the result:
-     ![image]()
+   - We ran a test on phase 1 python script and here is the result:
+     ![image](phase3/Screenshot 2025-04-28 123346.png)
 ---
