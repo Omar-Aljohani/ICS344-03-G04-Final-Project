@@ -135,5 +135,5 @@ In this phase, we set up and install Fail2Ban and conifure it into Metasploitabl
 
 4. **Testing the Defense**
    - We ran a test on phase 1 python script and here is the result:
-     ![image](phase3/Screenshot 2025-04-28 123346.png)
+     ![image]()
 ---
