@@ -101,7 +101,7 @@ In this phase, we set up a SIEM environment using Splunk to collect and visualiz
 
 
 
-# Phase 3 - Visual Analysis with a SIEM Dashboard
+# Phase 3 - Defensive Strategy
 
 ## Overview
 In this phase, we set up a install Fail2Ban and conifure it into Metasploitable3 victim machine. We specifically focused on blocking SSH brute-force attacks after 3 attemps.
