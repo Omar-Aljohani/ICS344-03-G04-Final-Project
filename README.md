@@ -104,7 +104,7 @@ In this phase, we set up a SIEM environment using Splunk to collect and visualiz
 # Phase 3 - Defensive Strategy
 
 ## Overview
-In this phase, we set up a install Fail2Ban and conifure it into Metasploitable3 victim machine. We specifically focused on blocking SSH brute-force attacks after 3 attemps.
+In this phase, we set up and install Fail2Ban and conifure it into Metasploitable3 victim machine. We specifically focused on blocking SSH brute-force attacks after 3 attemps.
 
 ---
 
@@ -114,13 +114,13 @@ In this phase, we set up a install Fail2Ban and conifure it into Metasploitable3
    - Followed the official guidelines to set up the Metasploitable3 VM in VirtualBox.
    - Installed Kali Linux VM and downloaded the Metasploit Framework to perform attacks against the victim machine.
 
-2. **Install and Cnofigure Fail2Ban**
+2. **Install and Configure Fail2Ban**
    - Installed Fail2Ban on the Metasploitable3 VM to secure SSH services on that VM against Brute-force attacks by executing this command:
    `sudo apt-get update `
    `sudo apt-get install fail2ban Command`
    - We had to configure Fail2Ban on the Metasploitable3 machine by executing this Command:
    `sudo nano /etc/fail2ban/jail.conf`
-   Then, modify the [sshd] section, where we modified: Longpath, Bantime, maxretry, filter and port.
+   Then, modify the `[sshd]` section, where we modified:` Longpath, Bantime, maxretry, filter and port`.
    - At the end we had to restart and verify Fail2Ban
 
 3. **Harden SSH Configurations**
@@ -130,10 +130,10 @@ In this phase, we set up a install Fail2Ban and conifure it into Metasploitable3
    - We had to restart SSH services.
    - At the emd we updated the firewall to double down and make sure that 22/tcp port is allowed and 2222/tcp port is blocked by executing these commands:
    `sudo ufw allow 22/tcp`
-   `sudo ufw deny 2222/tcp`..
+   `sudo ufw deny 2222/tcp`.
 
 
 4. **Testing the Defense**
    - We ran a test on phase 1 python script and here are the result:
-     ![image](<Screenshot 2025-04-28 123346.png>)
+     ![image]()
 ---
